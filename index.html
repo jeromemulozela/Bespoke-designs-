@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bespoke Designs Zambia — Premium Construction & Interior Design</title>
+  <meta name="description" content="Bespoke Designs Zambia — Premium construction, interior design, home remodeling and project management in Lusaka, Zambia. Lifetime builds." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #F7F2EB;
+      --bg-alt:   #EDE5D8;
+      --bg-card:  #FFFFFF;
+      --charcoal: #1E1916;
+      --charcoal-mid: #3D3530;
+      --warm-mid: #7A6A58;
+      --warm-dim: #A89888;
+      --gold:     #9B6B2F;
+      --gold-lt:  #C08A45;
+      --gold-dk:  #7A5220;
+      --border:   rgba(155,107,47,0.15);
+      --border-soft: rgba(155,107,47,0.08);
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Jost', system-ui, sans-serif;
+      --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      background: var(--bg);
+      color: var(--charcoal);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── GRAIN OVERLAY ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 128px 128px;
+    }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg-alt); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+    /* ─── SELECTION ─── */
+    ::selection { background: var(--gold); color: #fff; }
+
+    /* ─── UTILS ─── */
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 4rem); }
+    .label { font-family: var(--font-body); font-size: 0.65rem; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); }
+
+    /* ─── NAVIGATION ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 1.5rem clamp(1.5rem, 5vw, 4rem);
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background 0.5s var(--ease), backdrop-filter 0.5s, padding 0.4s var(--ease);
+    }
+    nav.scrolled {
+      background: rgba(247,242,235,0.94);
+      backdrop-filter: blur(20px);
+      padding: 1rem clamp(1.5rem, 5vw, 4rem);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 1px 24px rgba(155,107,47,0.06);
+    }
+    .nav-logo {
+      display: flex; flex-direction: column; gap: 0;
+      text-decoration: none;
+    }
+    .nav-logo-top {
+      font-family: var(--font-display); font-size: 1.4rem; font-weight: 600;
+      color: var(--charcoal); letter-spacing: 0.02em; line-height: 1;
+    }
+    .nav-logo-sub {
+      font-size: 0.55rem; font-weight: 500; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--gold);
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      color: var(--warm-mid); text-decoration: none; font-size: 0.78rem;
+      font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase;
+      transition: color 0.3s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px;
+      background: var(--gold); transition: width 0.3s var(--ease);
+    }
+    .nav-links a:hover { color: var(--charcoal); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta {
+      background: var(--charcoal); color: var(--bg) !important;
+      padding: 0.6rem 1.4rem; border-radius: 2px; font-weight: 500 !important;
+      transition: background 0.3s, transform 0.2s !important;
+    }
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover { background: var(--gold) !important; transform: translateY(-1px) !important; color: #fff !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 1px; background: var(--charcoal); transition: 0.3s; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+    .mobile-menu {
+      display: none; position: fixed; inset: 0; background: var(--bg);
+      z-index: 999; flex-direction: column; align-items: center;
+      justify-content: center; gap: 2.5rem;
+      border-left: 4px solid var(--gold);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: var(--font-display); font-size: 2.5rem;
+      color: var(--charcoal); text-decoration: none; font-weight: 400;
+      transition: color 0.3s;
+    }
+    .mobile-menu a:hover { color: var(--gold); }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100svh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center;
+      position: relative; overflow: hidden;
+      padding: 8rem clamp(1.5rem, 5vw, 4rem) 5rem;
+      gap: 4rem;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 65% 40%, rgba(155,107,47,0.07) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 50% at 10% 90%, rgba(155,107,47,0.05) 0%, transparent 60%),
+        linear-gradient(160deg, #F7F2EB 0%, #F0E8DA 50%, #F7F2EB 100%);
+    }
+    .hero-lines {
+      position: absolute; inset: 0; z-index: 0; opacity: 0.06;
+      background-image: repeating-linear-gradient(90deg, var(--gold) 0px, var(--gold) 1px, transparent 1px, transparent 80px);
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      margin-bottom: 2rem;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 0.8s var(--ease-out) 0.2s forwards;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 32px; height: 1px; background: var(--gold);
+    }
+    .hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(3.2rem, 6.5vw, 6rem);
+      font-weight: 600; line-height: 1.02;
+      color: var(--charcoal); margin-bottom: 1.5rem;
+      opacity: 0; transform: translateY(30px);
+      animation: fadeUp 1s var(--ease-out) 0.35s forwards;
+    }
+    .hero-headline em { color: var(--gold); font-style: italic; }
+    .hero-sub {
+      font-size: clamp(0.95rem, 1.5vw, 1.1rem); font-weight: 300;
+      color: var(--warm-mid); line-height: 1.75; max-width: 440px;
+      margin-bottom: 2.5rem;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 0.9s var(--ease-out) 0.55s forwards;
+    }
+    .hero-actions {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 0.9s var(--ease-out) 0.7s forwards;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: var(--charcoal); color: var(--bg);
+      padding: 0.9rem 2rem; font-size: 0.8rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      text-decoration: none; border-radius: 2px;
+      transition: background 0.3s, transform 0.3s var(--ease), box-shadow 0.3s;
+    }
+    .btn-primary:hover {
+      background: var(--gold); transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(155,107,47,0.25);
+    }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      color: var(--charcoal); padding: 0.9rem 2rem;
+      font-size: 0.8rem; font-weight: 400; letter-spacing: 0.12em;
+      text-transform: uppercase; text-decoration: none;
+      border: 1px solid rgba(155,107,47,0.35); border-radius: 2px;
+      transition: border-color 0.3s, color 0.3s, background 0.3s, transform 0.3s;
+    }
+    .btn-secondary:hover { border-color: var(--gold); color: var(--gold); background: rgba(155,107,47,0.04); transform: translateY(-2px); }
+    .btn-arrow { font-size: 1rem; transition: transform 0.3s var(--ease); }
+    .btn-primary:hover .btn-arrow, .btn-secondary:hover .btn-arrow { transform: translateX(4px); }
+
+    /* Hero visual */
+    .hero-visual {
+      position: relative; z-index: 1;
+      opacity: 0; transform: translateX(40px);
+      animation: fadeIn 1.2s var(--ease-out) 0.5s forwards;
+    }
+    .hero-frame {
+      position: relative; border-radius: 4px; overflow: hidden;
+      aspect-ratio: 4/5; box-shadow: 0 32px 80px rgba(30,25,22,0.10);
+    }
+    .hero-img-placeholder {
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, #EDE5D8 0%, #E0D4C0 40%, #EDE5D8 100%);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .arch-svg { width: 70%; height: 70%; opacity: 0.25; }
+    .hero-frame::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(30,25,22,0.35) 0%, transparent 50%);
+    }
+    .hero-badge {
+      position: absolute; bottom: -20px; left: -20px; z-index: 2;
+      background: var(--gold); border-radius: 2px;
+      padding: 1.2rem 1.5rem; text-align: center;
+      box-shadow: 0 8px 32px rgba(155,107,47,0.3);
+    }
+    .hero-badge-num {
+      font-family: var(--font-display); font-size: 2.5rem; font-weight: 600;
+      color: #fff; line-height: 1;
+    }
+    .hero-badge-txt { font-size: 0.65rem; font-weight: 500; color: rgba(255,255,255,0.85); letter-spacing: 0.1em; }
+    .hero-tag {
+      position: absolute; top: 20px; right: -10px; z-index: 2;
+      background: rgba(247,242,235,0.97); backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+      border-radius: 2px; padding: 0.8rem 1rem;
+      box-shadow: 0 4px 20px rgba(30,25,22,0.08);
+    }
+    .hero-tag-inner { display: flex; align-items: center; gap: 0.5rem; }
+    .hero-tag-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: pulse 2s infinite; }
+    .hero-tag-text { font-size: 0.7rem; font-weight: 400; color: var(--charcoal-mid); }
+    .hero-scroll {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      opacity: 0; animation: fadeIn 1s var(--ease-out) 1.5s forwards;
+    }
+    .hero-scroll span { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--warm-dim); }
+    .scroll-line { width: 1px; height: 48px; background: linear-gradient(to bottom, var(--gold), transparent); animation: scrollLine 1.5s ease-in-out infinite; }
+
+    @media (max-width: 900px) {
+      #hero { grid-template-columns: 1fr; padding-top: 7rem; }
+      .hero-visual { display: none; }
+      .hero-headline { font-size: clamp(2.8rem, 9vw, 4.5rem); }
+    }
+
+    /* ─── MARQUEE ─── */
+    .marquee-section {
+      padding: 1.5rem 0; border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden; background: var(--bg-alt);
+    }
+    .marquee-track {
+      display: flex; gap: 3rem; animation: marquee 25s linear infinite;
+      white-space: nowrap;
+    }
+    .marquee-item {
+      display: inline-flex; align-items: center; gap: 3rem;
+      font-family: var(--font-display); font-size: 1rem; font-weight: 400;
+      color: var(--warm-mid); letter-spacing: 0.05em;
+      flex-shrink: 0;
+    }
+    .marquee-sep { color: var(--gold); }
+
+    /* ─── TRUST / STATS ─── */
+    #trust { padding: 7rem 0; }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0; border: 1px solid var(--border);
+      background: var(--bg-card); border-radius: 4px; overflow: hidden;
+      box-shadow: 0 4px 32px rgba(30,25,22,0.05);
+    }
+    .stat-card {
+      padding: 3rem 2.5rem; border-right: 1px solid var(--border-soft);
+      position: relative; overflow: hidden;
+      transition: background 0.4s;
+    }
+    .stat-card:last-child { border-right: none; }
+    .stat-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--gold); transform: scaleX(0); transform-origin: left;
+      transition: transform 0.5s var(--ease-out);
+    }
+    .stat-card:hover::before { transform: scaleX(1); }
+    .stat-card:hover { background: rgba(155,107,47,0.03); }
+    .stat-num {
+      font-family: var(--font-display); font-size: clamp(3rem, 5vw, 4.5rem);
+      font-weight: 600; color: var(--charcoal); line-height: 1; margin-bottom: 0.5rem;
+    }
+    .stat-num span { color: var(--gold); }
+    .stat-label { font-size: 0.72rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--warm-mid); }
+    .stat-desc { font-size: 0.82rem; color: var(--warm-dim); margin-top: 0.5rem; }
+
+    @media (max-width: 768px) {
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stat-card { border-bottom: 1px solid var(--border-soft); }
+    }
+    @media (max-width: 480px) { .stats-grid { grid-template-columns: 1fr; } }
+
+    /* ─── SECTION HEADERS ─── */
+    .section-header { margin-bottom: 4rem; }
+    .section-header.centered { text-align: center; }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 500; color: var(--charcoal);
+      line-height: 1.08; margin-top: 0.75rem;
+    }
+    .section-title em { color: var(--gold); font-style: italic; }
+    .section-sub {
+      color: var(--warm-mid); font-size: 1rem; font-weight: 300;
+      max-width: 520px; margin-top: 1rem; line-height: 1.8;
+    }
+    .section-header.centered .section-sub { margin: 1rem auto 0; }
+
+    /* ─── SERVICES ─── */
+    #services { padding: 7rem 0; background: var(--bg-alt); }
+    .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border-radius: 4px; overflow: hidden; box-shadow: 0 4px 40px rgba(30,25,22,0.06); }
+    .service-card {
+      background: var(--bg-card); padding: 3rem 2.5rem;
+      position: relative; overflow: hidden;
+      transition: background 0.4s var(--ease);
+      cursor: default;
+    }
+    .service-card::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(155,107,47,0.04) 0%, transparent 60%);
+      opacity: 0; transition: opacity 0.4s;
+    }
+    .service-card:hover { background: #FDFAF7; }
+    .service-card:hover::after { opacity: 1; }
+    .service-icon {
+      width: 52px; height: 52px; margin-bottom: 1.75rem;
+      border: 1px solid var(--border); border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--bg);
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .service-card:hover .service-icon { border-color: var(--gold); background: rgba(155,107,47,0.07); }
+    .service-icon svg { width: 22px; height: 22px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+    .service-num { position: absolute; top: 2rem; right: 2rem; font-family: var(--font-display); font-size: 4rem; font-weight: 600; color: rgba(155,107,47,0.06); line-height: 1; }
+    .service-title { font-family: var(--font-display); font-size: 1.75rem; font-weight: 500; color: var(--charcoal); margin-bottom: 1rem; }
+    .service-desc { font-size: 0.9rem; color: var(--warm-mid); line-height: 1.8; margin-bottom: 1.5rem; }
+    .service-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .service-tag {
+      font-size: 0.62rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.3rem 0.75rem; border: 1px solid var(--border);
+      border-radius: 1px; color: var(--gold); background: rgba(155,107,47,0.04);
+    }
+
+    @media (max-width: 640px) { .services-grid { grid-template-columns: 1fr; } }
+
+    /* ─── WHY US ─── */
+    #why { padding: 7rem 0; }
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+    .why-visual { position: relative; }
+    .why-img-stack { position: relative; }
+    .why-img-main {
+      aspect-ratio: 3/4; border-radius: 4px;
+      background: linear-gradient(145deg, #EDE5D8 0%, #E0D4C0 100%);
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+      position: relative;
+      box-shadow: 0 24px 64px rgba(30,25,22,0.10);
+    }
+    .why-img-main::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(45deg, rgba(155,107,47,0.04) 0px, rgba(155,107,47,0.04) 1px, transparent 1px, transparent 30px);
+    }
+    .why-accent-box {
+      position: absolute; bottom: -2rem; right: -2rem;
+      width: 160px; padding: 1.5rem;
+      background: var(--gold); border-radius: 2px;
+      box-shadow: 0 12px 40px rgba(155,107,47,0.35);
+    }
+    .why-accent-box-title { font-family: var(--font-display); font-size: 2rem; font-weight: 600; color: #fff; }
+    .why-accent-box-sub { font-size: 0.65rem; font-weight: 500; color: rgba(255,255,255,0.8); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.25rem; }
+    .why-content { position: relative; z-index: 1; }
+    .why-points { display: flex; flex-direction: column; gap: 2rem; margin-top: 2.5rem; }
+    .why-point { display: flex; gap: 1.5rem; }
+    .why-point-icon {
+      width: 40px; height: 40px; flex-shrink: 0;
+      border: 1px solid var(--border); border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--bg-alt);
+      margin-top: 0.2rem;
+    }
+    .why-point-icon svg { width: 18px; height: 18px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+    .why-point-title { font-family: var(--font-display); font-size: 1.2rem; color: var(--charcoal); margin-bottom: 0.4rem; }
+    .why-point-desc { font-size: 0.88rem; color: var(--warm-mid); line-height: 1.75; }
+
+    @media (max-width: 900px) {
+      .why-grid { grid-template-columns: 1fr; gap: 4rem; }
+      .why-visual { display: none; }
+    }
+
+    /* ─── PORTFOLIO ─── */
+    #portfolio { padding: 7rem 0; background: var(--bg-alt); }
+    .portfolio-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; flex-wrap: wrap; gap: 1.5rem; }
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: auto;
+      gap: 1px; background: var(--border);
+      border-radius: 4px; overflow: hidden;
+      box-shadow: 0 4px 40px rgba(30,25,22,0.07);
+    }
+    .portfolio-item {
+      position: relative; overflow: hidden; cursor: pointer;
+      background: var(--bg-alt);
+    }
+    .portfolio-item:nth-child(1) { grid-column: span 7; }
+    .portfolio-item:nth-child(2) { grid-column: span 5; }
+    .portfolio-item:nth-child(3) { grid-column: span 4; }
+    .portfolio-item:nth-child(4) { grid-column: span 4; }
+    .portfolio-item:nth-child(5) { grid-column: span 4; }
+    .portfolio-img {
+      width: 100%; aspect-ratio: 4/3; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .portfolio-item:nth-child(1) .portfolio-img { aspect-ratio: 16/9; }
+    .p-bg {
+      position: absolute; inset: 0;
+      transition: transform 0.7s var(--ease-out);
+    }
+    .portfolio-item:hover .p-bg { transform: scale(1.05); }
+    .p-bg-1 { background: linear-gradient(135deg, #DDD3C0 0%, #C8B898 50%, #D5C8B0 100%); }
+    .p-bg-2 { background: linear-gradient(135deg, #D0C8BA 0%, #BFB5A2 50%, #CCC4B5 100%); }
+    .p-bg-3 { background: linear-gradient(135deg, #C8C0B0 0%, #BCAF9C 50%, #C5BAA8 100%); }
+    .p-bg-4 { background: linear-gradient(135deg, #D8D0C4 0%, #C5BAAA 50%, #D2C8BA 100%); }
+    .p-bg-5 { background: linear-gradient(135deg, #CEC8BC 0%, #C0B8A8 50%, #CCC4B4 100%); }
+    .p-pattern {
+      position: absolute; inset: 0; opacity: 0.12;
+      background-image: repeating-linear-gradient(0deg, var(--gold) 0px, var(--gold) 1px, transparent 1px, transparent 40px),
+                        repeating-linear-gradient(90deg, var(--gold) 0px, var(--gold) 1px, transparent 1px, transparent 40px);
+    }
+    .p-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(30,25,22,0.85) 0%, rgba(30,25,22,0.2) 50%, transparent 100%);
+      transform: translateY(30%); transition: transform 0.5s var(--ease-out);
+    }
+    .portfolio-item:hover .p-overlay { transform: translateY(0); }
+    .p-info {
+      position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem;
+      transform: translateY(20px); transition: transform 0.5s var(--ease-out);
+    }
+    .portfolio-item:hover .p-info { transform: translateY(0); }
+    .p-cat { font-size: 0.6rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-lt); margin-bottom: 0.4rem; }
+    .p-title { font-family: var(--font-display); font-size: 1.3rem; color: #fff; font-weight: 500; }
+    .p-result { font-size: 0.78rem; color: rgba(255,255,255,0.7); margin-top: 0.25rem; }
+    .p-arrow {
+      position: absolute; top: 1rem; right: 1rem; width: 36px; height: 36px;
+      border: 1px solid rgba(155,107,47,0.5); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transform: scale(0.8); transition: opacity 0.3s, transform 0.3s;
+      background: rgba(247,242,235,0.1); backdrop-filter: blur(4px);
+    }
+    .portfolio-item:hover .p-arrow { opacity: 1; transform: scale(1); }
+    .p-arrow svg { width: 14px; height: 14px; stroke: var(--gold-lt); }
+
+    @media (max-width: 768px) {
+      .portfolio-item:nth-child(n) { grid-column: span 12; }
+    }
+
+    /* ─── PROCESS ─── */
+    #process { padding: 7rem 0; }
+    .process-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; position: relative; margin-top: 4rem; }
+    .process-steps::before { content: ''; position: absolute; top: 24px; left: 0; right: 0; height: 1px; background: var(--border); }
+    .process-step { padding: 0 1.5rem 0 0; position: relative; }
+    .step-dot {
+      width: 48px; height: 48px; border-radius: 50%;
+      border: 1px solid var(--border); background: var(--bg-card);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.5rem; position: relative; z-index: 1;
+      transition: border-color 0.3s, background 0.3s;
+      box-shadow: 0 2px 12px rgba(30,25,22,0.05);
+    }
+    .process-step:hover .step-dot { border-color: var(--gold); background: rgba(155,107,47,0.07); }
+    .step-num { font-family: var(--font-display); font-size: 1rem; color: var(--gold); font-weight: 500; }
+    .step-title { font-family: var(--font-display); font-size: 1.1rem; color: var(--charcoal); margin-bottom: 0.5rem; }
+    .step-desc { font-size: 0.82rem; color: var(--warm-mid); line-height: 1.7; }
+
+    @media (max-width: 900px) {
+      .process-steps { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+      .process-steps::before { display: none; }
+    }
+    @media (max-width: 480px) { .process-steps { grid-template-columns: 1fr; } }
+
+    /* ─── TESTIMONIALS ─── */
+    #testimonials { padding: 7rem 0; background: var(--bg-alt); }
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .testi-card {
+      border: 1px solid var(--border); padding: 2.5rem;
+      border-radius: 4px; position: relative; overflow: hidden;
+      transition: border-color 0.4s, transform 0.4s var(--ease), box-shadow 0.4s;
+      background: var(--bg-card);
+    }
+    .testi-card:hover { border-color: rgba(155,107,47,0.35); transform: translateY(-4px); box-shadow: 0 20px 56px rgba(30,25,22,0.08); }
+    .quote-mark {
+      font-family: var(--font-display); font-size: 5rem; line-height: 1;
+      color: rgba(155,107,47,0.15); margin-bottom: 0.5rem; position: absolute;
+      top: 1.5rem; right: 2rem;
+    }
+    .testi-stars { color: var(--gold); font-size: 0.8rem; margin-bottom: 1.2rem; letter-spacing: 0.1em; }
+    .testi-text { font-family: var(--font-display); font-size: 1.05rem; font-weight: 400; color: var(--charcoal-mid); line-height: 1.7; margin-bottom: 1.75rem; font-style: italic; }
+    .testi-author { display: flex; align-items: center; gap: 1rem; }
+    .testi-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-dk), var(--gold));
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 1.2rem; color: #fff; font-weight: 600;
+      flex-shrink: 0;
+    }
+    .testi-name { font-size: 0.85rem; font-weight: 500; color: var(--charcoal); }
+    .testi-role { font-size: 0.72rem; color: var(--warm-dim); letter-spacing: 0.05em; }
+
+    @media (max-width: 900px) { .testi-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 640px) { .testi-grid { grid-template-columns: 1fr; } }
+
+    /* ─── FAQ ─── */
+    #faq { padding: 7rem 0; }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; }
+    .faq-list { display: flex; flex-direction: column; gap: 0; margin-top: 1rem; }
+    .faq-item { border-bottom: 1px solid var(--border-soft); }
+    .faq-q {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.5rem 0; cursor: pointer;
+      font-family: var(--font-display); font-size: 1.1rem; color: var(--charcoal); font-weight: 500;
+      transition: color 0.3s; gap: 1rem;
+    }
+    .faq-q:hover { color: var(--gold); }
+    .faq-icon {
+      width: 28px; height: 28px; border: 1px solid var(--border); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      transition: transform 0.4s var(--ease), border-color 0.3s, background 0.3s;
+      background: var(--bg-alt);
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); border-color: var(--gold); background: rgba(155,107,47,0.1); }
+    .faq-icon svg { width: 12px; height: 12px; stroke: var(--gold); }
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      font-size: 0.9rem; color: var(--warm-mid); line-height: 1.8;
+      transition: max-height 0.5s var(--ease), padding 0.4s;
+    }
+    .faq-item.open .faq-a { max-height: 300px; padding-bottom: 1.5rem; }
+    .faq-contact {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 4px; padding: 2.5rem;
+      display: flex; flex-direction: column; gap: 1.5rem; justify-content: center;
+      box-shadow: 0 4px 32px rgba(30,25,22,0.05);
+    }
+    .faq-contact-title { font-family: var(--font-display); font-size: 2rem; color: var(--charcoal); }
+    .faq-contact-text { font-size: 0.9rem; color: var(--warm-mid); line-height: 1.8; }
+    .faq-contact-links { display: flex; flex-direction: column; gap: 0.75rem; }
+    .contact-link {
+      display: flex; align-items: center; gap: 0.75rem;
+      font-size: 0.88rem; color: var(--charcoal-mid); text-decoration: none;
+      transition: color 0.3s;
+    }
+    .contact-link:hover { color: var(--gold); }
+    .contact-link-icon {
+      width: 36px; height: 36px; border: 1px solid var(--border);
+      border-radius: 2px; display: flex; align-items: center; justify-content: center;
+      background: var(--bg);
+    }
+    .contact-link-icon svg { width: 16px; height: 16px; stroke: var(--gold); fill: none; }
+
+    @media (max-width: 900px) { .faq-grid { grid-template-columns: 1fr; gap: 3rem; } }
+
+    /* ─── CTA ─── */
+    #cta {
+      padding: 10rem clamp(1.5rem, 5vw, 4rem);
+      text-align: center; position: relative; overflow: hidden;
+      background: var(--charcoal);
+    }
+    #cta::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(155,107,47,0.20) 0%, transparent 70%);
+    }
+    #cta::after {
+      content: '';
+      position: absolute; inset: 0; opacity: 0.04;
+      background-image: repeating-linear-gradient(90deg, var(--gold) 0px, var(--gold) 1px, transparent 1px, transparent 80px);
+    }
+    .cta-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+    .cta-inner .label { color: var(--gold-lt); }
+    .cta-title { font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5.5rem); font-weight: 600; line-height: 1.05; margin-bottom: 1.5rem; color: #fff; }
+    .cta-title em { color: var(--gold-lt); font-style: italic; display: block; }
+    .cta-sub { font-size: 1.05rem; color: rgba(247,242,235,0.65); line-height: 1.75; margin-bottom: 3rem; }
+    .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .cta-actions .btn-primary { background: var(--gold); color: #fff; }
+    .cta-actions .btn-primary:hover { background: var(--gold-lt); }
+    .cta-actions .btn-secondary { color: rgba(247,242,235,0.85); border-color: rgba(247,242,235,0.2); }
+    .cta-actions .btn-secondary:hover { border-color: var(--gold-lt); color: var(--gold-lt); background: rgba(155,107,47,0.08); }
+    .cta-decoration {
+      position: absolute; font-family: var(--font-display);
+      font-size: 20rem; font-weight: 700;
+      color: rgba(155,107,47,0.05); z-index: 0;
+      user-select: none; line-height: 1; top: 50%; transform: translateY(-50%);
+    }
+    .cta-decoration.left { left: -5rem; }
+    .cta-decoration.right { right: -5rem; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 5rem 0 2rem;
+    }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; padding-bottom: 4rem; border-bottom: 1px solid var(--border-soft); }
+    .footer-brand-name { font-family: var(--font-display); font-size: 1.6rem; font-weight: 600; color: var(--charcoal); margin-bottom: 0.25rem; }
+    .footer-brand-tag { font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; }
+    .footer-brand-desc { font-size: 0.88rem; color: var(--warm-mid); line-height: 1.8; max-width: 280px; margin-bottom: 2rem; }
+    .footer-social { display: flex; gap: 0.75rem; }
+    .social-btn {
+      width: 38px; height: 38px; border: 1px solid var(--border); border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.3s, background 0.3s; cursor: pointer; text-decoration: none;
+      background: var(--bg-card);
+    }
+    .social-btn:hover { border-color: var(--gold); background: rgba(155,107,47,0.07); }
+    .social-btn svg { width: 16px; height: 16px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+    .footer-col-title { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; }
+    .footer-links a { font-size: 0.88rem; color: var(--warm-mid); text-decoration: none; transition: color 0.3s; }
+    .footer-links a:hover { color: var(--charcoal); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 2rem; gap: 1rem; flex-wrap: wrap; }
+    .footer-copy { font-size: 0.75rem; color: var(--warm-dim); }
+    .footer-copy a { color: var(--gold); text-decoration: none; }
+    .footer-tagline { font-family: var(--font-display); font-style: italic; font-size: 0.85rem; color: var(--warm-dim); }
+
+    @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 3rem; } }
+    @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; transform: none; }
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    @keyframes scrollLine {
+      0%, 100% { opacity: 1; transform: scaleY(1) translateY(0); }
+      50% { opacity: 0.3; transform: scaleY(0.5) translateY(50%); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal {
+      opacity: 0; transform: translateY(32px);
+      transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+    }
+    .reveal.revealed { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ─── PROGRESS BAR ─── */
+    .progress-bar {
+      position: fixed; top: 0; left: 0; height: 2px;
+      background: var(--gold); z-index: 10001;
+      width: 0%; transition: width 0.1s;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Progress Bar -->
+  <div class="progress-bar" id="progressBar"></div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#services" onclick="closeMobile()">Services</a>
+    <a href="#portfolio" onclick="closeMobile()">Portfolio</a>
+    <a href="#why" onclick="closeMobile()">About</a>
+    <a href="#testimonials" onclick="closeMobile()">Reviews</a>
+    <a href="#faq" onclick="closeMobile()">FAQ</a>
+    <a href="#cta" onclick="closeMobile()" style="color:var(--gold)">Get In Touch</a>
+  </div>
+
+  <!-- Navigation -->
+  <nav id="navbar">
+    <a href="#hero" class="nav-logo">
+      <span class="nav-logo-top">Bespoke Designs</span>
+      <span class="nav-logo-sub">Zambia — Est. Lusaka</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#why">About</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#cta" class="nav-cta">Get In Touch</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMobile()" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════ HERO ═══════════════════ -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-lines"></div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="label">Premium Construction &amp; Interior Design</span>
+      </div>
+      <h1 class="hero-headline">
+        Spaces Built<br>to <em>Last a</em><br>Lifetime
+      </h1>
+      <p class="hero-sub">
+        Lusaka's premier construction and interior design studio — transforming your vision into enduring, bespoke spaces that reflect who you are.
+      </p>
+      <div class="hero-actions">
+        <a href="#cta" class="btn-primary">Start Your Project <span class="btn-arrow">→</span></a>
+        <a href="#portfolio" class="btn-secondary">View Our Work <span class="btn-arrow">→</span></a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-frame">
+        <div class="hero-img-placeholder">
+          <svg class="arch-svg" viewBox="0 0 200 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="200" width="80" height="100" stroke="#9B6B2F" stroke-width="1"/>
+            <rect x="110" y="200" width="80" height="100" stroke="#9B6B2F" stroke-width="1"/>
+            <path d="M10 200 Q50 100 90 200" stroke="#9B6B2F" stroke-width="1" fill="none"/>
+            <path d="M110 200 Q150 100 190 200" stroke="#9B6B2F" stroke-width="1" fill="none"/>
+            <line x1="50" y1="120" x2="50" y2="200" stroke="#9B6B2F" stroke-width="0.5" opacity="0.4"/>
+            <line x1="150" y1="120" x2="150" y2="200" stroke="#9B6B2F" stroke-width="0.5" opacity="0.4"/>
+            <line x1="0" y1="200" x2="200" y2="200" stroke="#9B6B2F" stroke-width="1"/>
+            <line x1="0" y1="230" x2="200" y2="230" stroke="#9B6B2F" stroke-width="0.3" opacity="0.3"/>
+            <line x1="0" y1="260" x2="200" y2="260" stroke="#9B6B2F" stroke-width="0.3" opacity="0.3"/>
+            <circle cx="100" cy="60" r="30" stroke="#9B6B2F" stroke-width="0.5" opacity="0.3"/>
+            <circle cx="100" cy="60" r="20" stroke="#9B6B2F" stroke-width="1" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="hero-badge">
+          <div class="hero-badge-num">8+</div>
+          <div class="hero-badge-txt">Years of<br>Excellence</div>
+        </div>
+        <div class="hero-tag">
+          <div class="hero-tag-inner">
+            <div class="hero-tag-dot"></div>
+            <div class="hero-tag-text">Currently Accepting Projects</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ MARQUEE ═══════════════════ -->
+  <div class="marquee-section" aria-hidden="true">
+    <div class="marquee-track">
+      <div class="marquee-item">Premium Construction <span class="marquee-sep">◆</span> Interior Design <span class="marquee-sep">◆</span> Home Remodeling <span class="marquee-sep">◆</span> Project Management <span class="marquee-sep">◆</span> Lusaka, Zambia <span class="marquee-sep">◆</span> Lifetime Builds <span class="marquee-sep">◆</span> Tailored Spaces <span class="marquee-sep">◆</span></div>
+      <div class="marquee-item">Premium Construction <span class="marquee-sep">◆</span> Interior Design <span class="marquee-sep">◆</span> Home Remodeling <span class="marquee-sep">◆</span> Project Management <span class="marquee-sep">◆</span> Lusaka, Zambia <span class="marquee-sep">◆</span> Lifetime Builds <span class="marquee-sep">◆</span> Tailored Spaces <span class="marquee-sep">◆</span></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ TRUST / STATS ═══════════════════ -->
+  <section id="trust">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label">Track Record</span>
+        <h2 class="section-title">Numbers that<br>speak <em>for themselves</em></h2>
+      </div>
+      <div class="stats-grid reveal">
+        <div class="stat-card">
+          <div class="stat-num">150<span>+</span></div>
+          <div class="stat-label">Projects Completed</div>
+          <div class="stat-desc">Across residential &amp; commercial sectors</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">8<span>+</span></div>
+          <div class="stat-label">Years of Excellence</div>
+          <div class="stat-desc">Building Lusaka's finest interiors</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">98<span>%</span></div>
+          <div class="stat-label">Client Satisfaction</div>
+          <div class="stat-desc">Referrals and repeat clients</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">4<span>+</span></div>
+          <div class="stat-label">Cities Served</div>
+          <div class="stat-desc">Lusaka, Ndola, Kitwe &amp; beyond</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ SERVICES ═══════════════════ -->
+  <section id="services">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label">What We Do</span>
+        <h2 class="section-title">Crafted services,<br><em>exceptional results</em></h2>
+        <p class="section-sub">Every project is approached with precision, artistry, and a relentless commitment to quality that outlasts trends.</p>
+      </div>
+      <div class="services-grid reveal">
+        <div class="service-card">
+          <div class="service-num">01</div>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 21h18M3 7l9-4 9 4M4 21V7M20 21V7M8 21V11h4v10M12 11h4v10"/></svg>
+          </div>
+          <h3 class="service-title">Construction</h3>
+          <p class="service-desc">From ground-breaking to final finish, we deliver structural excellence with materials sourced for longevity. Residential homes, commercial spaces, and extensions built to the highest standard.</p>
+          <div class="service-tags">
+            <span class="service-tag">Residential</span>
+            <span class="service-tag">Commercial</span>
+            <span class="service-tag">Extensions</span>
+            <span class="service-tag">Renovations</span>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-num">02</div>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 3l9 9H3l9-9zM5 12v9h14v-9M9 21V15h6v6"/></svg>
+          </div>
+          <h3 class="service-title">Interior Design</h3>
+          <p class="service-desc">We translate your personality and lifestyle into spaces that are both beautiful and functional. Furniture selection, material curation, lighting design — every element considered with intention.</p>
+          <div class="service-tags">
+            <span class="service-tag">Concept Design</span>
+            <span class="service-tag">Furniture</span>
+            <span class="service-tag">Lighting</span>
+            <span class="service-tag">Styling</span>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-num">03</div>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M15 5l4 4-9 9-5 1 1-5 9-9zM14 6l4 4"/></svg>
+          </div>
+          <h3 class="service-title">Home Remodeling</h3>
+          <p class="service-desc">Transform your existing space without starting from scratch. Kitchen upgrades, bathroom renovations, custom wardrobes — thoughtful remodels that breathe new life into your home.</p>
+          <div class="service-tags">
+            <span class="service-tag">Kitchen</span>
+            <span class="service-tag">Bathrooms</span>
+            <span class="service-tag">Wardrobes</span>
+            <span class="service-tag">Open-plan</span>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-num">04</div>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+          </div>
+          <h3 class="service-title">Project Management</h3>
+          <p class="service-desc">Complex builds require seamless coordination. We manage contractors, timelines, budgets, and quality control so your project is delivered on time — and exceeds expectations.</p>
+          <div class="service-tags">
+            <span class="service-tag">Budgeting</span>
+            <span class="service-tag">Scheduling</span>
+            <span class="service-tag">QA/QC</span>
+            <span class="service-tag">Reporting</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ WHY CHOOSE US ═══════════════════ -->
+  <section id="why">
+    <div class="container">
+      <div class="why-grid">
+        <div class="why-visual reveal">
+          <div class="why-img-stack">
+            <div class="why-img-main">
+              <svg width="140" height="180" viewBox="0 0 140 180" fill="none" opacity="0.35">
+                <rect x="20" y="100" width="45" height="80" stroke="#9B6B2F" stroke-width="1"/>
+                <rect x="75" y="70" width="45" height="110" stroke="#9B6B2F" stroke-width="1"/>
+                <path d="M20 100 Q42 40 65 100" stroke="#9B6B2F" stroke-width="1" fill="none"/>
+                <line x1="10" y1="100" x2="130" y2="100" stroke="#9B6B2F" stroke-width="1"/>
+                <line x1="10" y1="180" x2="130" y2="180" stroke="#9B6B2F" stroke-width="1"/>
+                <circle cx="95" cy="40" r="25" stroke="#9B6B2F" stroke-width="0.8"/>
+                <line x1="95" y1="15" x2="95" y2="65" stroke="#9B6B2F" stroke-width="0.5" opacity="0.4"/>
+                <line x1="70" y1="40" x2="120" y2="40" stroke="#9B6B2F" stroke-width="0.5" opacity="0.4"/>
+              </svg>
+            </div>
+            <div class="why-accent-box">
+              <div class="why-accent-box-title">100%</div>
+              <div class="why-accent-box-sub">Client-First<br>Approach</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="why-content">
+          <div class="section-header reveal">
+            <span class="label">Why Bespoke</span>
+            <h2 class="section-title">Built on trust,<br><em>driven by craft</em></h2>
+            <p class="section-sub">We don't just build spaces — we build relationships. Every project is a commitment to excellence that we stand behind.</p>
+          </div>
+          <div class="why-points">
+            <div class="why-point reveal reveal-delay-1">
+              <div class="why-point-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div>
+                <div class="why-point-title">Guaranteed Quality</div>
+                <p class="why-point-desc">Every build carries our quality guarantee. We use premium materials and employ skilled craftsmen who take pride in their work — no shortcuts, ever.</p>
+              </div>
+            </div>
+            <div class="why-point reveal reveal-delay-2">
+              <div class="why-point-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+              </div>
+              <div>
+                <div class="why-point-title">On-Time Delivery</div>
+                <p class="why-point-desc">Deadlines are promises. Our project management systems and experienced team ensure your project is delivered on schedule and within budget.</p>
+              </div>
+            </div>
+            <div class="why-point reveal reveal-delay-3">
+              <div class="why-point-icon">
+                <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+              </div>
+              <div>
+                <div class="why-point-title">Truly Bespoke</div>
+                <p class="why-point-desc">No templates, no off-the-shelf solutions. Every design is created specifically for you — tailored to your lifestyle, taste, and the unique character of your space.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ PORTFOLIO ═══════════════════ -->
+  <section id="portfolio">
+    <div class="container">
+      <div class="portfolio-header reveal">
+        <div>
+          <span class="label">Our Work</span>
+          <h2 class="section-title">Selected <em>projects</em></h2>
+        </div>
+        <a href="#cta" class="btn-secondary" style="align-self:flex-end">View All <span class="btn-arrow">→</span></a>
+      </div>
+      <div class="portfolio-grid reveal">
+        <div class="portfolio-item">
+          <div class="portfolio-img">
+            <div class="p-bg p-bg-1"></div>
+            <div class="p-pattern"></div>
+            <div class="p-overlay"></div>
+            <div class="p-arrow"><svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7v10" stroke="currentColor" stroke-width="1.5"/></svg></div>
+            <div class="p-info">
+              <div class="p-cat">Residential Construction</div>
+              <div class="p-title">Roma Park — Private Villa</div>
+              <div class="p-result">4-bedroom home delivered 3 weeks ahead of schedule</div>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-img">
+            <div class="p-bg p-bg-2"></div>
+            <div class="p-pattern"></div>
+            <div class="p-overlay"></div>
+            <div class="p-arrow"><svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7v10" stroke="currentColor" stroke-width="1.5"/></svg></div>
+            <div class="p-info">
+              <div class="p-cat">Interior Design</div>
+              <div class="p-title">Kabulonga — Executive Suite</div>
+              <div class="p-result">Full interior concept to completion, 6 weeks</div>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-img">
+            <div class="p-bg p-bg-3"></div>
+            <div class="p-pattern"></div>
+            <div class="p-overlay"></div>
+            <div class="p-arrow"><svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7v10" stroke="currentColor" stroke-width="1.5"/></svg></div>
+            <div class="p-info">
+              <div class="p-cat">Home Remodeling</div>
+              <div class="p-title">Woodlands Kitchen Overhaul</div>
+              <div class="p-result">Shaker cabinetry, bespoke island, marble finishes</div>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-img">
+            <div class="p-bg p-bg-4"></div>
+            <div class="p-pattern"></div>
+            <div class="p-overlay"></div>
+            <div class="p-arrow"><svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7v10" stroke="currentColor" stroke-width="1.5"/></svg></div>
+            <div class="p-info">
+              <div class="p-cat">Commercial</div>
+              <div class="p-title">Cairo Road — Office Fit-Out</div>
+              <div class="p-result">1,200 sqm open-plan workspace in 10 weeks</div>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-img">
+            <div class="p-bg p-bg-5"></div>
+            <div class="p-pattern"></div>
+            <div class="p-overlay"></div>
+            <div class="p-arrow"><svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7v10" stroke="currentColor" stroke-width="1.5"/></svg></div>
+            <div class="p-info">
+              <div class="p-cat">Luxury Wardrobe</div>
+              <div class="p-title">Showroom Walk-in Wardrobe</div>
+              <div class="p-result">Custom fitted — 14-day turnaround</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ PROCESS ═══════════════════ -->
+  <section id="process">
+    <div class="container">
+      <div class="section-header centered reveal">
+        <span class="label">How We Work</span>
+        <h2 class="section-title">Our <em>process</em></h2>
+        <p class="section-sub">A structured approach that keeps you informed and in control at every stage.</p>
+      </div>
+      <div class="process-steps">
+        <div class="process-step reveal reveal-delay-1">
+          <div class="step-dot"><span class="step-num">01</span></div>
+          <div class="step-title">Discovery</div>
+          <p class="step-desc">We listen deeply to understand your vision, lifestyle, and budget. No assumptions — just careful listening.</p>
+        </div>
+        <div class="process-step reveal reveal-delay-2">
+          <div class="step-dot"><span class="step-num">02</span></div>
+          <div class="step-title">Design Concept</div>
+          <p class="step-desc">Our team develops a bespoke concept — mood boards, drawings, material palettes — built entirely around you.</p>
+        </div>
+        <div class="process-step reveal reveal-delay-3">
+          <div class="step-dot"><span class="step-num">03</span></div>
+          <div class="step-title">Approval &amp; Planning</div>
+          <p class="step-desc">You review, we refine. Once approved, we create a detailed project plan with milestones and transparent costings.</p>
+        </div>
+        <div class="process-step reveal reveal-delay-4">
+          <div class="step-dot"><span class="step-num">04</span></div>
+          <div class="step-title">Build &amp; Manage</div>
+          <p class="step-desc">Skilled craftsmen execute the plan. We manage every contractor, every delivery, every detail — daily.</p>
+        </div>
+        <div class="process-step reveal">
+          <div class="step-dot"><span class="step-num">05</span></div>
+          <div class="step-title">Handover</div>
+          <p class="step-desc">We walk you through every finish, address every detail, and hand over a space you're proud to call yours.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ TESTIMONIALS ═══════════════════ -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="section-header centered reveal">
+        <span class="label">Client Reviews</span>
+        <h2 class="section-title">What our clients <em>say</em></h2>
+      </div>
+      <div class="testi-grid reveal">
+        <div class="testi-card">
+          <div class="quote-mark">"</div>
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">Bespoke Designs transformed our house into the home we always dreamed of. Samuel and the team were professional, meticulous, and genuinely passionate about getting every detail right.</p>
+          <div class="testi-author">
+            <div class="testi-avatar">C</div>
+            <div>
+              <div class="testi-name">Chanda Mwamba</div>
+              <div class="testi-role">Homeowner — Kabulonga, Lusaka</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="quote-mark">"</div>
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">Our office fit-out was completed ahead of schedule and the quality is remarkable. The team handled everything — we didn't have to worry about a single thing. Exceptional project management.</p>
+          <div class="testi-author">
+            <div class="testi-avatar">N</div>
+            <div>
+              <div class="testi-name">Nkandu Phiri</div>
+              <div class="testi-role">Director — Lusaka CBD</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="quote-mark">"</div>
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">The wardrobe they built for us is a work of art. Truly bespoke — designed around exactly how we live and organised. I've recommended Bespoke Designs to every friend since.</p>
+          <div class="testi-author">
+            <div class="testi-avatar">T</div>
+            <div>
+              <div class="testi-name">Thandiwe Banda</div>
+              <div class="testi-role">Homeowner — Roma Park, Lusaka</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ FAQ ═══════════════════ -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label">Common Questions</span>
+        <h2 class="section-title">Frequently <em>asked</em></h2>
+      </div>
+      <div class="faq-grid">
+        <div class="faq-list reveal">
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              What areas do you serve?
+              <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none"><line x1="12" y1="5" x2="12" y2="19" stroke="#9B6B2F" stroke-width="2"/><line x1="5" y1="12" x2="19" y2="12" stroke="#9B6B2F" stroke-width="2"/></svg></div>
+            </div>
+            <div class="faq-a">We are based in Lusaka, Zambia, and operate primarily across Lusaka, Ndola, Kitwe, and Livingstone. We are open to discussing projects in other cities — reach out to discuss your location.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              How long does a typical project take?
+              <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none"><line x1="12" y1="5" x2="12" y2="19" stroke="#9B6B2F" stroke-width="2"/><line x1="5" y1="12" x2="19" y2="12" stroke="#9B6B2F" stroke-width="2"/></svg></div>
+            </div>
+            <div class="faq-a">Timelines vary by scope. A single-room interior design project typically takes 3–6 weeks. A full residential build ranges from 6 to 18 months. We provide a detailed schedule during our planning phase with clear milestones.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              Do you handle both design and construction?
+              <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none"><line x1="12" y1="5" x2="12" y2="19" stroke="#9B6B2F" stroke-width="2"/><line x1="5" y1="12" x2="19" y2="12" stroke="#9B6B2F" stroke-width="2"/></svg></div>
+            </div>
+            <div class="faq-a">Yes — this is one of our key advantages. Our integrated approach means your designer and your builder are on the same team, eliminating miscommunication and ensuring the vision is executed exactly as designed.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              What is your payment structure?
+              <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none"><line x1="12" y1="5" x2="12" y2="19" stroke="#9B6B2F" stroke-width="2"/><line x1="5" y1="12" x2="19" y2="12" stroke="#9B6B2F" stroke-width="2"/></svg></div>
+            </div>
+            <div class="faq-a">We work with a milestone-based payment structure that aligns with project stages — discovery, design approval, construction phases, and handover. This keeps both parties accountable and ensures clear progress tracking.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              Can I see your previous work before committing?
+              <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none"><line x1="12" y1="5" x2="12" y2="19" stroke="#9B6B2F" stroke-width="2"/><line x1="5" y1="12" x2="19" y2="12" stroke="#9B6B2F" stroke-width="2"/></svg></div>
+            </div>
+            <div class="faq-a">Absolutely. We encourage prospective clients to review our full portfolio and, where possible, arrange a visit to completed projects with the homeowner's permission. Our Instagram also showcases regular project updates.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              How do I get a quote?
+              <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none"><line x1="12" y1="5" x2="12" y2="19" stroke="#9B6B2F" stroke-width="2"/><line x1="5" y1="12" x2="19" y2="12" stroke="#9B6B2F" stroke-width="2"/></svg></div>
+            </div>
+            <div class="faq-a">Simply reach out via WhatsApp or email with a brief description of your project. We'll schedule a free consultation — either in-person or virtually — to understand your needs before preparing a detailed, transparent quotation.</div>
+          </div>
+        </div>
+        <div class="faq-contact reveal reveal-delay-2">
+          <div>
+            <span class="label">Still Have Questions?</span>
+            <div class="faq-contact-title">Talk to us directly</div>
+          </div>
+          <p class="faq-contact-text">We're a small, committed team. Reach Samuel and the Bespoke Designs team through any of these channels — we respond promptly.</p>
+          <div class="faq-contact-links">
+            <a href="https://wa.me/260968422842" class="contact-link">
+              <div class="contact-link-icon">
+                <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" stroke="#9B6B2F"/></svg>
+              </div>
+              WhatsApp: +260 968 422 842
+            </a>
+            <a href="mailto:bespokedesignszambia@gmail.com" class="contact-link">
+              <div class="contact-link-icon">
+                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="#9B6B2F"/><polyline points="22,6 12,13 2,6" stroke="#9B6B2F"/></svg>
+              </div>
+              bespokedesignszambia@gmail.com
+            </a>
+            <a href="https://instagram.com/bespokedesignszambia" class="contact-link">
+              <div class="contact-link-icon">
+                <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="#9B6B2F"/><circle cx="12" cy="12" r="4" stroke="#9B6B2F"/><circle cx="17.5" cy="6.5" r="0.5" fill="#9B6B2F"/></svg>
+              </div>
+              @bespokedesignszambia
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ CTA ═══════════════════ -->
+  <section id="cta">
+    <div class="cta-decoration left">B</div>
+    <div class="cta-decoration right">D</div>
+    <div class="cta-inner reveal">
+      <span class="label">Ready to Begin?</span>
+      <h2 class="cta-title">
+        Your dream space
+        <em>starts here.</em>
+      </h2>
+      <p class="cta-sub">Tell us about your project — we offer a free, no-obligation consultation for all new enquiries. From a single room to a full build, every project deserves to be bespoke.</p>
+      <div class="cta-actions">
+        <a href="https://wa.me/260968422842" class="btn-primary">WhatsApp Us Now <span class="btn-arrow">→</span></a>
+        <a href="mailto:bespokedesignszambia@gmail.com" class="btn-secondary">Send an Email <span class="btn-arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ FOOTER ═══════════════════ -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-name">Bespoke Designs Zambia</div>
+          <div class="footer-brand-tag">Lifetime Builds — Est. Lusaka</div>
+          <p class="footer-brand-desc">A premium construction and interior design company committed to making your ideas a reality — with quality products and services tailored to your spaces.</p>
+          <div class="footer-social">
+            <a href="https://instagram.com/bespokedesignszambia" class="social-btn" title="Instagram">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="#9B6B2F" stroke="none"/></svg>
+            </a>
+            <a href="https://facebook.com/BespokeDesignsZm" class="social-btn" title="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+            </a>
+            <a href="https://x.com/bespokedzambia" class="social-btn" title="X / Twitter">
+              <svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4L4 20"/></svg>
+            </a>
+            <a href="https://wa.me/260968422842" class="social-btn" title="WhatsApp">
+              <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Services</div>
+          <ul class="footer-links">
+            <li><a href="#services">Construction</a></li>
+            <li><a href="#services">Interior Design</a></li>
+            <li><a href="#services">Home Remodeling</a></li>
+            <li><a href="#services">Project Management</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Navigate</div>
+          <ul class="footer-links">
+            <li><a href="#trust">About Us</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#process">Our Process</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Contact</div>
+          <ul class="footer-links">
+            <li><a href="https://wa.me/260968422842">+260 968 422 842</a></li>
+            <li><a href="mailto:bespokedesignszambia@gmail.com">bespokedesignszambia<br>@gmail.com</a></li>
+            <li><a href="#">Lusaka, Zambia</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2025 Bespoke Designs Zambia. All rights reserved. Managing Director: <a href="mailto:bespokedesignszambia@gmail.com">Samuel MacKayi</a>.</p>
+        <div class="footer-tagline">Crafted with precision. Built to last.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ── Navbar Scroll ──
+    const navbar = document.getElementById('navbar');
+    const progressBar = document.getElementById('progressBar');
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY;
+      navbar.classList.toggle('scrolled', scrolled > 60);
+      const total = document.body.scrollHeight - window.innerHeight;
+      progressBar.style.width = (scrolled / total * 100) + '%';
+    });
+
+    // ── Mobile Menu ──
+    let mobileOpen = false;
+    function toggleMobile() {
+      mobileOpen = !mobileOpen;
+      document.getElementById('mobileMenu').classList.toggle('open', mobileOpen);
+      document.body.style.overflow = mobileOpen ? 'hidden' : '';
+    }
+    function closeMobile() {
+      mobileOpen = false;
+      document.getElementById('mobileMenu').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // ── Scroll Reveal ──
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); revealObserver.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => revealObserver.observe(el));
+
+    // ── FAQ Accordion ──
+    function toggleFaq(el) {
+      const item = el.parentElement;
+      const allItems = document.querySelectorAll('.faq-item');
+      allItems.forEach(i => { if (i !== item) i.classList.remove('open'); });
+      item.classList.toggle('open');
+    }
+
+    // ── Stat Counter Animation ──
+    function animateCounters() {
+      document.querySelectorAll('.stat-num').forEach(el => {
+        const text = el.textContent;
+        const num = parseFloat(text);
+        if (isNaN(num)) return;
+        const suffix = text.replace(/[\d.]/g, '');
+        const duration = 1800;
+        const start = performance.now();
+        function update(now) {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const current = Math.round(eased * num * 10) / 10;
+          el.innerHTML = current + '<span>' + suffix + '</span>';
+          if (progress < 1) requestAnimationFrame(update);
+        }
+        requestAnimationFrame(update);
+      });
+    }
+    const trustSection = document.getElementById('trust');
+    let counted = false;
+    const trustObserver = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && !counted) { counted = true; animateCounters(); }
+    }, { threshold: 0.3 });
+    trustObserver.observe(trustSection);
+  </script>
+</body>
+</html>
