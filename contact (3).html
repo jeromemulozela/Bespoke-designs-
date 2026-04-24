@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us — Bespoke Designs Zambia</title>
+  <meta name="description" content="Get in touch with Bespoke Designs Zambia. Book a free consultation, request a quote, or simply say hello — we'd love to hear about your project." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #F7F2EB; --bg-alt: #EDE5D8; --bg-card: #FFFFFF;
+      --charcoal: #1E1916; --charcoal-mid: #3D3530;
+      --warm-mid: #7A6A58; --warm-dim: #A89888;
+      --gold: #9B6B2F; --gold-lt: #C08A45; --gold-dk: #7A5220;
+      --border: rgba(155,107,47,0.15); --border-soft: rgba(155,107,47,0.08);
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Jost', system-ui, sans-serif;
+      --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { background: var(--bg); color: var(--charcoal); font-family: var(--font-body); font-weight: 300; line-height: 1.6; overflow-x: hidden; }
+    body::before { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0.025; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); background-size: 128px 128px; }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg-alt); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+    ::selection { background: var(--gold); color: #fff; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 4rem); }
+    .label { font-family: var(--font-body); font-size: 0.65rem; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); }
+
+    /* PROGRESS BAR */
+    #progressBar { position: fixed; top: 0; left: 0; height: 2px; background: var(--gold); z-index: 2000; width: 0; transition: width 0.1s; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1.5rem clamp(1.5rem,5vw,4rem); display: flex; align-items: center; justify-content: space-between; transition: background 0.5s var(--ease), backdrop-filter 0.5s, padding 0.4s var(--ease); }
+    nav.scrolled { background: rgba(247,242,235,0.94); backdrop-filter: blur(20px); padding: 1rem clamp(1.5rem,5vw,4rem); border-bottom: 1px solid var(--border); box-shadow: 0 1px 24px rgba(155,107,47,0.06); }
+    .nav-logo { display: flex; flex-direction: column; gap: 0; text-decoration: none; }
+    .nav-logo-top { font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; color: var(--charcoal); letter-spacing: 0.02em; line-height: 1; }
+    .nav-logo-sub { font-size: 0.55rem; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { color: var(--warm-mid); text-decoration: none; font-size: 0.78rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.3s; position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width 0.3s var(--ease); }
+    .nav-links a:hover { color: var(--charcoal); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: var(--charcoal); }
+    .nav-links a.active::after { width: 100%; }
+    .nav-cta { background: var(--charcoal) !important; color: var(--bg) !important; padding: 0.6rem 1.4rem; border-radius: 2px; font-weight: 500 !important; transition: background 0.3s, transform 0.2s !important; }
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover { background: var(--gold) !important; transform: translateY(-1px) !important; color: #fff !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+    .hamburger span { display: block; width: 24px; height: 1px; background: var(--charcoal); transition: 0.3s; }
+    @media (max-width: 768px) { .nav-links { display: none; } .hamburger { display: flex; } }
+    .mobile-menu { display: none; position: fixed; inset: 0; background: var(--bg); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; border-left: 4px solid var(--gold); }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-family: var(--font-display); font-size: 2.5rem; color: var(--charcoal); text-decoration: none; font-weight: 400; transition: color 0.3s; }
+    .mobile-menu a:hover { color: var(--gold); }
+
+    /* BUTTONS */
+    .btn-primary { display: inline-flex; align-items: center; gap: 0.6rem; background: var(--charcoal); color: var(--bg); padding: 0.9rem 2rem; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; border-radius: 2px; border: none; cursor: pointer; transition: background 0.3s, transform 0.3s var(--ease), box-shadow 0.3s; }
+    .btn-primary:hover { background: var(--gold); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(155,107,47,0.25); }
+    .btn-secondary { display: inline-flex; align-items: center; gap: 0.6rem; color: var(--charcoal); padding: 0.9rem 2rem; font-size: 0.8rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; border: 1px solid rgba(155,107,47,0.35); border-radius: 2px; transition: border-color 0.3s, color 0.3s, background 0.3s, transform 0.3s; }
+    .btn-secondary:hover { border-color: var(--gold); color: var(--gold); background: rgba(155,107,47,0.04); transform: translateY(-2px); }
+    .btn-arrow { font-size: 1rem; transition: transform 0.3s var(--ease); }
+    .btn-primary:hover .btn-arrow, .btn-secondary:hover .btn-arrow { transform: translateX(4px); }
+
+    /* SECTION HEADERS */
+    .section-header { margin-bottom: 4rem; }
+    .section-header.centered { text-align: center; }
+    .section-title { font-family: var(--font-display); font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 500; color: var(--charcoal); line-height: 1.08; margin-top: 0.75rem; }
+    .section-title em { color: var(--gold); font-style: italic; }
+    .section-sub { color: var(--warm-mid); font-size: 1rem; font-weight: 300; max-width: 520px; margin-top: 1rem; line-height: 1.8; }
+    .section-header.centered .section-sub { margin: 1rem auto 0; }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out); }
+    .reveal.revealed { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.15s; }
+    .reveal-delay-2 { transition-delay: 0.3s; }
+    .reveal-delay-3 { transition-delay: 0.45s; }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { to { opacity: 1; transform: none; } }
+    @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+
+    /* PAGE HERO */
+    .page-hero { padding: 14rem clamp(1.5rem,5vw,4rem) 8rem; position: relative; overflow: hidden; background: var(--charcoal); }
+    .page-hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(155,107,47,0.1) 0%, transparent 60%); }
+    .page-hero-grid { position: absolute; inset: 0; opacity: 0.04; background-image: repeating-linear-gradient(0deg, var(--gold) 0px, var(--gold) 1px, transparent 1px, transparent 60px), repeating-linear-gradient(90deg, var(--gold) 0px, var(--gold) 1px, transparent 1px, transparent 60px); }
+    .page-hero-inner { position: relative; z-index: 1; max-width: 720px; }
+    .page-hero-eyebrow { display: inline-flex; align-items: center; gap: 0.75rem; margin-bottom: 1.75rem; opacity: 0; transform: translateY(20px); animation: fadeUp 0.8s var(--ease-out) 0.2s forwards; }
+    .page-hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--gold-lt); }
+    .page-hero-eyebrow .label { color: var(--gold-lt); }
+    .page-hero-title { font-family: var(--font-display); font-size: clamp(3.5rem, 7vw, 6.5rem); font-weight: 600; line-height: 1.02; color: var(--bg); margin-bottom: 1.5rem; opacity: 0; transform: translateY(30px); animation: fadeUp 1s var(--ease-out) 0.35s forwards; }
+    .page-hero-title em { color: var(--gold-lt); font-style: italic; }
+    .page-hero-sub { font-size: clamp(1rem, 1.5vw, 1.15rem); font-weight: 300; color: rgba(247,242,235,0.65); line-height: 1.8; max-width: 520px; opacity: 0; transform: translateY(20px); animation: fadeUp 0.9s var(--ease-out) 0.55s forwards; }
+
+    /* MARQUEE */
+    .marquee-section { padding: 1.5rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden; background: var(--bg-alt); }
+    .marquee-track { display: flex; gap: 3rem; animation: marquee 25s linear infinite; white-space: nowrap; }
+    .marquee-item { display: inline-flex; align-items: center; gap: 3rem; font-family: var(--font-display); font-size: 1rem; font-weight: 400; color: var(--warm-mid); letter-spacing: 0.05em; flex-shrink: 0; }
+    .marquee-sep { color: var(--gold); }
+
+    /* CONTACT SECTION */
+    #contact { padding: 8rem 0; }
+    .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+    .contact-info { position: sticky; top: 8rem; }
+    .contact-info .section-header { margin-bottom: 2.5rem; }
+    .contact-details { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 3rem; }
+    .contact-item { display: flex; align-items: flex-start; gap: 1.25rem; padding: 1.5rem; border: 1px solid var(--border); border-radius: 2px; background: var(--bg-card); transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s; }
+    .contact-item:hover { border-color: rgba(155,107,47,0.35); transform: translateX(4px); box-shadow: 0 8px 32px rgba(30,25,22,0.06); }
+    .contact-item-icon { width: 44px; height: 44px; border: 1px solid var(--border); border-radius: 2px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: var(--bg); }
+    .contact-item-icon svg { width: 18px; height: 18px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+    .contact-item-label { font-size: 0.62rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+    .contact-item-value { font-size: 0.95rem; color: var(--charcoal); font-weight: 400; }
+    .contact-item-value a { color: var(--charcoal); text-decoration: none; transition: color 0.3s; }
+    .contact-item-value a:hover { color: var(--gold); }
+    .contact-availability { padding: 1.5rem; background: var(--bg-alt); border-radius: 2px; border-left: 3px solid var(--gold); }
+    .contact-avail-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #4CAF50; margin-right: 0.5rem; animation: pulse 2s infinite; }
+    .contact-avail-text { font-size: 0.82rem; color: var(--charcoal-mid); font-weight: 400; }
+    .contact-avail-hours { font-size: 0.78rem; color: var(--warm-mid); margin-top: 0.4rem; }
+
+    /* FORM */
+    .contact-form-wrap { background: var(--bg-card); border: 1px solid var(--border); border-radius: 4px; padding: 3rem; box-shadow: 0 4px 40px rgba(30,25,22,0.05); }
+    .form-header { margin-bottom: 2.5rem; }
+    .form-header .label { margin-bottom: 0.5rem; display: block; }
+    .form-header h3 { font-family: var(--font-display); font-size: 2rem; font-weight: 500; color: var(--charcoal); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .form-group { margin-bottom: 1.5rem; }
+    .form-group label { display: block; font-size: 0.68rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--warm-mid); margin-bottom: 0.6rem; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%; padding: 0.875rem 1.1rem; background: var(--bg); border: 1px solid var(--border); border-radius: 2px; font-family: var(--font-body); font-size: 0.92rem; font-weight: 300; color: var(--charcoal); outline: none; transition: border-color 0.3s, box-shadow 0.3s; appearance: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(155,107,47,0.08); }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--warm-dim); }
+    .form-group select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239B6B2F' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; cursor: pointer; }
+    .form-group textarea { resize: vertical; min-height: 130px; }
+    .form-budget { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .budget-pill { padding: 0.5rem 1rem; border: 1px solid var(--border); border-radius: 50px; font-size: 0.75rem; font-weight: 400; color: var(--warm-mid); cursor: pointer; transition: border-color 0.3s, color 0.3s, background 0.3s; user-select: none; }
+    .budget-pill.selected,
+    .budget-pill:hover { border-color: var(--gold); color: var(--gold); background: rgba(155,107,47,0.06); }
+    .form-submit { width: 100%; justify-content: center; font-size: 0.85rem; padding: 1.1rem 2rem; margin-top: 0.5rem; }
+    .form-note { font-size: 0.75rem; color: var(--warm-dim); margin-top: 1rem; text-align: center; line-height: 1.6; }
+    @media (max-width: 900px) { .contact-layout { grid-template-columns: 1fr; gap: 4rem; } .contact-info { position: static; } }
+    @media (max-width: 560px) { .form-row { grid-template-columns: 1fr; } .contact-form-wrap { padding: 2rem; } }
+
+    /* SOCIAL LINKS */
+    .contact-social { margin-top: 2rem; }
+    .contact-social-label { font-size: 0.62rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+    .contact-social-links { display: flex; gap: 0.75rem; }
+    .social-btn { width: 40px; height: 40px; border: 1px solid var(--border); border-radius: 2px; display: flex; align-items: center; justify-content: center; transition: border-color 0.3s, background 0.3s; }
+    .social-btn:hover { border-color: var(--gold); background: rgba(155,107,47,0.08); }
+    .social-btn svg { width: 15px; height: 15px; stroke: var(--warm-mid); fill: none; stroke-width: 1.5; transition: stroke 0.3s; }
+    .social-btn:hover svg { stroke: var(--gold); }
+
+    /* FAQ */
+    #faq { padding: 8rem 0; background: var(--bg-alt); }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border-radius: 4px; overflow: hidden; margin-top: 4rem; }
+    .faq-item { background: var(--bg-card); padding: 2.5rem; transition: background 0.3s; cursor: pointer; }
+    .faq-item:hover { background: rgba(247,242,235,0.7); }
+    .faq-q { font-family: var(--font-display); font-size: 1.15rem; font-weight: 500; color: var(--charcoal); margin-bottom: 0.75rem; display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+    .faq-q::after { content: '+'; font-family: var(--font-body); font-size: 1.2rem; color: var(--gold); font-weight: 300; flex-shrink: 0; transition: transform 0.3s; }
+    .faq-item.open .faq-q::after { transform: rotate(45deg); }
+    .faq-a { font-size: 0.9rem; color: var(--warm-mid); line-height: 1.8; display: none; }
+    .faq-item.open .faq-a { display: block; }
+    @media (max-width: 768px) { .faq-grid { grid-template-columns: 1fr; } }
+
+    /* FOOTER */
+    footer { background: #161210; padding: 6rem 0 2rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; padding-bottom: 4rem; border-bottom: 1px solid rgba(155,107,47,0.1); }
+    .footer-brand-name { font-family: var(--font-display); font-size: 1.5rem; color: var(--bg); font-weight: 500; margin-bottom: 0.25rem; }
+    .footer-brand-tag { font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+    .footer-brand-desc { font-size: 0.88rem; color: rgba(247,242,235,0.45); line-height: 1.8; margin-bottom: 1.5rem; }
+    .footer-social { display: flex; gap: 0.75rem; }
+    .footer-social-btn { width: 36px; height: 36px; border: 1px solid rgba(155,107,47,0.25); border-radius: 2px; display: flex; align-items: center; justify-content: center; transition: border-color 0.3s, background 0.3s; }
+    .footer-social-btn:hover { border-color: var(--gold); background: rgba(155,107,47,0.1); }
+    .footer-social-btn svg { width: 14px; height: 14px; stroke: rgba(247,242,235,0.5); fill: none; stroke-width: 1.5; transition: stroke 0.3s; }
+    .footer-social-btn:hover svg { stroke: var(--gold); }
+    .footer-col-title { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+    .footer-links a { font-size: 0.88rem; color: rgba(247,242,235,0.45); text-decoration: none; transition: color 0.3s; }
+    .footer-links a:hover { color: rgba(247,242,235,0.85); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 2rem; gap: 1rem; flex-wrap: wrap; }
+    .footer-copy { font-size: 0.78rem; color: rgba(247,242,235,0.3); }
+    .footer-copy a { color: rgba(155,107,47,0.7); text-decoration: none; }
+    .footer-tagline { font-family: var(--font-display); font-size: 0.9rem; font-style: italic; color: rgba(247,242,235,0.2); }
+    @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+    /* SUCCESS STATE */
+    .form-success { display: none; text-align: center; padding: 3rem 2rem; }
+    .form-success-icon { width: 64px; height: 64px; border-radius: 50%; background: rgba(155,107,47,0.1); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; }
+    .form-success-icon svg { width: 28px; height: 28px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+    .form-success h4 { font-family: var(--font-display); font-size: 1.8rem; font-weight: 500; color: var(--charcoal); margin-bottom: 0.75rem; }
+    .form-success p { font-size: 0.9rem; color: var(--warm-mid); line-height: 1.8; }
+  </style>
+</head>
+<body>
+  <div id="progressBar"></div>
+
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-top">Bespoke Designs</span>
+      <span class="nav-logo-sub">Zambia · Est. Lusaka</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html" class="active nav-cta">Get a Quote</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMobile()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html" onclick="closeMobile()">Home</a>
+    <a href="services.html" onclick="closeMobile()">Services</a>
+    <a href="portfolio.html" onclick="closeMobile()">Portfolio</a>
+    <a href="about.html" onclick="closeMobile()">About</a>
+    <a href="contact.html" onclick="closeMobile()">Contact</a>
+  </div>
+
+  <!-- PAGE HERO (dark variant) -->
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-grid"></div>
+    <div class="page-hero-inner">
+      <div class="page-hero-eyebrow">
+        <span class="label">Get in Touch</span>
+      </div>
+      <h1 class="page-hero-title">
+        Let's Talk<br>
+        About Your<br>
+        <em>Project</em>
+      </h1>
+      <p class="page-hero-sub">Whether you have a fully formed brief or just a rough vision, we'd love to hear from you. Our first consultation is always free and completely without obligation.</p>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-section">
+    <div class="marquee-track">
+      <div class="marquee-item">Free Consultation <span class="marquee-sep">✦</span> Transparent Quotes <span class="marquee-sep">✦</span> No Obligation <span class="marquee-sep">✦</span> Fast Response <span class="marquee-sep">✦</span> Based in Lusaka <span class="marquee-sep">✦</span> Working Across Zambia <span class="marquee-sep">✦</span></div>
+      <div class="marquee-item" aria-hidden="true">Free Consultation <span class="marquee-sep">✦</span> Transparent Quotes <span class="marquee-sep">✦</span> No Obligation <span class="marquee-sep">✦</span> Fast Response <span class="marquee-sep">✦</span> Based in Lusaka <span class="marquee-sep">✦</span> Working Across Zambia <span class="marquee-sep">✦</span></div>
+    </div>
+  </div>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-layout">
+
+        <!-- LEFT: INFO -->
+        <div class="contact-info">
+          <div class="section-header reveal">
+            <span class="label">Reach Out</span>
+            <h2 class="section-title">We're Ready<br>When <em>You Are</em></h2>
+            <p class="section-sub">We typically respond to all enquiries within one business day. For urgent matters, WhatsApp is always the fastest route.</p>
+          </div>
+
+          <div class="contact-details reveal reveal-delay-1">
+            <div class="contact-item">
+              <div class="contact-item-icon">
+                <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+              </div>
+              <div>
+                <div class="contact-item-label">WhatsApp</div>
+                <div class="contact-item-value"><a href="https://wa.me/260968422842">+260 968 422 842</a></div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">
+                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div>
+                <div class="contact-item-label">Email</div>
+                <div class="contact-item-value"><a href="mailto:bespokedesignszambia@gmail.com">bespokedesignszambia@gmail.com</a></div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">
+                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <div class="contact-item-label">Location</div>
+                <div class="contact-item-value">Lusaka, Zambia<br><span style="font-size:0.82rem; color:var(--warm-dim)">Working across all of Zambia</span></div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">
+                <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              </div>
+              <div>
+                <div class="contact-item-label">Office Hours</div>
+                <div class="contact-item-value">Mon – Fri, 08:00 – 17:00 CAT<br><span style="font-size:0.82rem; color:var(--warm-dim)">Saturdays by appointment</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-availability reveal reveal-delay-2">
+            <span class="contact-avail-dot"></span>
+            <span class="contact-avail-text">Currently accepting new projects for Q3 2025</span>
+            <div class="contact-avail-hours">Typical response time: within 24 hours</div>
+          </div>
+
+          <div class="contact-social reveal reveal-delay-3">
+            <div class="contact-social-label">Follow Our Work</div>
+            <div class="contact-social-links">
+              <a href="https://instagram.com/bespokedesignszambia" class="social-btn" title="Instagram">
+                <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
+              </a>
+              <a href="https://facebook.com/BespokeDesignsZm" class="social-btn" title="Facebook">
+                <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+              </a>
+              <a href="https://wa.me/260968422842" class="social-btn" title="WhatsApp">
+                <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: FORM -->
+        <div class="contact-form-wrap reveal reveal-delay-1">
+          <div id="formContent">
+            <div class="form-header">
+              <span class="label">Project Enquiry</span>
+              <h3>Tell Us About<br>Your Vision</h3>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" placeholder="Samuel" />
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" placeholder="MacKayi" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="you@example.com" />
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone / WhatsApp</label>
+                <input type="tel" id="phone" placeholder="+260 9XX XXX XXX" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="service">Type of Project</label>
+              <select id="service">
+                <option value="" disabled selected>Select a service…</option>
+                <option>New Construction</option>
+                <option>Interior Design</option>
+                <option>Home Remodeling</option>
+                <option>Project Management</option>
+                <option>Other / Not Sure Yet</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Approximate Budget</label>
+              <div class="form-budget">
+                <div class="budget-pill" onclick="selectBudget(this)">Under K50k</div>
+                <div class="budget-pill" onclick="selectBudget(this)">K50k – K150k</div>
+                <div class="budget-pill" onclick="selectBudget(this)">K150k – K500k</div>
+                <div class="budget-pill" onclick="selectBudget(this)">K500k+</div>
+                <div class="budget-pill" onclick="selectBudget(this)">Discuss with us</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Tell Us More</label>
+              <textarea id="message" placeholder="Describe your project — location, scope, any reference images you have in mind, your timeline…"></textarea>
+            </div>
+
+            <button class="btn-primary form-submit" onclick="submitForm()">
+              Send Enquiry <span class="btn-arrow">→</span>
+            </button>
+            <p class="form-note">By submitting this form you agree to be contacted by Bespoke Designs Zambia regarding your enquiry. We never share your information with third parties.</p>
+          </div>
+
+          <!-- SUCCESS STATE -->
+          <div class="form-success" id="formSuccess">
+            <div class="form-success-icon">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h4>Enquiry Received</h4>
+            <p>Thank you for reaching out. Samuel and the team will be in touch within one business day.<br><br>In the meantime, feel free to reach us directly on WhatsApp at <a href="https://wa.me/260968422842" style="color:var(--gold)">+260 968 422 842</a>.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-header centered reveal">
+        <span class="label">Common Questions</span>
+        <h2 class="section-title">Before You <em>Reach Out</em></h2>
+        <p class="section-sub">A few answers to questions we hear most often. If yours isn't here, just ask.</p>
+      </div>
+      <div class="faq-grid reveal reveal-delay-1">
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-q">How much does a typical project cost?</div>
+          <div class="faq-a">Every project is different — cost depends on scope, materials, location, and timeline. We always provide a detailed, itemised quote before any work begins, so you'll know exactly where every kwacha goes. Our first consultation is completely free.</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-q">How long does a typical build take?</div>
+          <div class="faq-a">A single-room renovation can take 2–4 weeks. A full residential build typically runs 3–8 months depending on scale and complexity. We provide a project timeline at the proposal stage and keep to it — our on-time delivery record is 100%.</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-q">Do you work outside of Lusaka?</div>
+          <div class="faq-a">Yes. While we are headquartered in Lusaka, we take on projects across Zambia. Travel and accommodation costs for our team would be factored into the project quote for locations outside the city.</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-q">Do I need to have a design before approaching you?</div>
+          <div class="faq-a">Not at all. Many of our clients come to us with just a rough idea or inspiration images. Our design team will work with you to develop a full brief and concept before any construction begins.</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-q">What is your payment structure?</div>
+          <div class="faq-a">We work on a staged payment model tied to project milestones — typically a deposit to commence, then payments linked to key stages of completion. Full details are always outlined in the project agreement.</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-q">Will I have a single point of contact throughout?</div>
+          <div class="faq-a">Yes. Every project is assigned a dedicated project manager who will be your primary contact from kickoff to handover. You won't be passed around — we know how frustrating that is.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-name">Bespoke Designs Zambia</div>
+          <div class="footer-brand-tag">Lifetime Builds — Est. Lusaka</div>
+          <p class="footer-brand-desc">A premium construction and interior design studio committed to making your vision a reality — with quality, character, and care.</p>
+          <div class="footer-social">
+            <a href="https://instagram.com/bespokedesignszambia" class="footer-social-btn" title="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/></svg></a>
+            <a href="https://facebook.com/BespokeDesignsZm" class="footer-social-btn" title="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+            <a href="https://wa.me/260968422842" class="footer-social-btn" title="WhatsApp"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Services</div>
+          <ul class="footer-links">
+            <li><a href="services.html#construction">Construction</a></li>
+            <li><a href="services.html#interior">Interior Design</a></li>
+            <li><a href="services.html#remodeling">Home Remodeling</a></li>
+            <li><a href="services.html#management">Project Management</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Company</div>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="index.html#process">Our Process</a></li>
+            <li><a href="index.html#testimonials">Reviews</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Contact</div>
+          <ul class="footer-links">
+            <li><a href="https://wa.me/260968422842">+260 968 422 842</a></li>
+            <li><a href="mailto:bespokedesignszambia@gmail.com">bespokedesignszambia@gmail.com</a></li>
+            <li><a href="#">Lusaka, Zambia</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2025 Bespoke Designs Zambia. All rights reserved. MD: <a href="mailto:bespokedesignszambia@gmail.com">Samuel MacKayi</a>.</p>
+        <div class="footer-tagline">Crafted with precision. Built to last.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    const progressBar = document.getElementById('progressBar');
+    window.addEventListener('scroll', () => {
+      const s = window.scrollY;
+      navbar.classList.toggle('scrolled', s > 60);
+      const total = document.body.scrollHeight - window.innerHeight;
+      progressBar.style.width = (s / total * 100) + '%';
+    });
+    let mobileOpen = false;
+    function toggleMobile() {
+      mobileOpen = !mobileOpen;
+      document.getElementById('mobileMenu').classList.toggle('open', mobileOpen);
+      document.body.style.overflow = mobileOpen ? 'hidden' : '';
+    }
+    function closeMobile() {
+      mobileOpen = false;
+      document.getElementById('mobileMenu').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); revealObserver.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => revealObserver.observe(el));
+    function selectBudget(el) {
+      document.querySelectorAll('.budget-pill').forEach(p => p.classList.remove('selected'));
+      el.classList.add('selected');
+    }
+    function submitForm() {
+      const required = ['firstName', 'email', 'message'];
+      let valid = true;
+      required.forEach(id => {
+        const el = document.getElementById(id);
+        if (!el.value.trim()) { el.style.borderColor = 'rgba(200,80,60,0.5)'; valid = false; }
+        else { el.style.borderColor = ''; }
+      });
+      if (!valid) return;
+      document.getElementById('formContent').style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+    }
+    function toggleFaq(el) {
+      const isOpen = el.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) el.classList.add('open');
+    }
+  </script>
+</body>
+</html>
