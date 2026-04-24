@@ -232,6 +232,65 @@
     .footer-tagline { font-family: var(--font-display); font-size: 0.9rem; font-style: italic; color: rgba(247,242,235,0.2); }
     @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+    /* Floating WhatsApp Button */
+.wa-float {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1500;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #25D366;
+  color: #fff;
+  padding: 0.85rem 1.25rem 0.85rem 1rem;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 8px 32px rgba(37,211,102,0.35);
+  transition: transform 0.3s var(--ease), box-shadow 0.3s, padding 0.3s;
+  overflow: hidden;
+  max-width: 52px;
+}
+.wa-float:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 48px rgba(37,211,102,0.45);
+  max-width: 200px;
+}
+.wa-float svg {
+  width: 26px;
+  height: 26px;
+  fill: #fff;
+  flex-shrink: 0;
+}
+.wa-float-label {
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s 0.1s;
+}
+.wa-float:hover .wa-float-label {
+  opacity: 1;
+}
+/* Pulse ring animation */
+.wa-float::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50px;
+  background: #25D366;
+  animation: waPulse 2.5s ease-out infinite;
+  z-index: -1;
+}
+@keyframes waPulse {
+  0%   { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+@media (max-width: 480px) {
+  .wa-float { bottom: 1.25rem; right: 1.25rem; }
+}
   </style>
 </head>
 <body>
@@ -615,7 +674,18 @@
       </div>
     </div>
   </footer>
-
+  
+<!-- Floating WhatsApp Button -->
+<a href="https://wa.me/260968422842?text=Hi%20Bespoke%20Designs%2C%20I%27d%20like%20to%20enquire%20about%20a%20project." 
+   class="wa-float" 
+   target="_blank" 
+   aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.17 1.6 5.933L0 24l6.266-1.578A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.374l-.36-.214-3.721.937.988-3.613-.235-.372A9.818 9.818 0 1112 21.818z"/>
+  </svg>
+  <span class="wa-float-label">Chat with us</span>
+</a>
   <script>
     const navbar = document.getElementById('navbar');
     const progressBar = document.getElementById('progressBar');
@@ -667,5 +737,6 @@
       }, { threshold: 0.3 }).observe(trustSection);
     }
   </script>
+  
 </body>
 </html>
